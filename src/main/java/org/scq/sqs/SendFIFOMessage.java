@@ -18,7 +18,7 @@ import com.amazonaws.services.sqs.model.SendMessageRequest;
 public class SendFIFOMessage {
 	public static void main(String[] args) {
 		for (int i = 0; i < Constant.SEND_CLIENT_NUMBER; i++) {
-			new Thread(new Task()).start();
+			new Thread(new SendTask()).start();
 		}
 
 	}
