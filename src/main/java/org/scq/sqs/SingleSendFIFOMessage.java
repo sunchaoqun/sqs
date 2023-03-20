@@ -15,19 +15,8 @@ import com.amazonaws.services.sqs.AmazonSQSClientBuilder;
 import com.amazonaws.services.sqs.model.MessageAttributeValue;
 import com.amazonaws.services.sqs.model.SendMessageRequest;
 
-public class SendFIFOMessage {
+public class SingleSendFIFOMessage {
 	public static void main(String[] args) {
-		for (int i = 0; i < Constant.SEND_CLIENT_NUMBER; i++) {
-			new Thread(new SendTask()).start();
-		}
-
-	}
-}
-
-class SendTask implements Runnable {
-
-	@Override
-	public void run() {
 		AWSCredentialsProvider awsCredentialsProvider = new AWSStaticCredentialsProvider(
 				new BasicAWSCredentials(Constant.AK, Constant.SK));
 
@@ -50,7 +39,8 @@ class SendTask implements Runnable {
 					.withMessageAttributes(messageAttributes);
 			sqs.sendMessage(sendMessageFifoQueue);
 
-			System.out.println("Message sent " + i);
+			System.out.println(sendMessageFifoQueue.getMessageGroupId() + " Message sent " + i);
 		}
+
 	}
 }

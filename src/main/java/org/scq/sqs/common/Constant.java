@@ -3,6 +3,8 @@ package org.scq.sqs.common;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 import com.amazonaws.auth.AWSCredentialsProvider;
@@ -12,6 +14,7 @@ import com.amazonaws.services.identitymanagement.AmazonIdentityManagement;
 import com.amazonaws.services.identitymanagement.AmazonIdentityManagementClientBuilder;
 
 public class Constant {
+	public static Map<String,String> process = new HashMap<>();
 	public static String REGION = null;
 	public static String AK = null;
 	public static String SK = null;
@@ -23,10 +26,10 @@ public class Constant {
 	public static int SEND_CLIENT_MESSAGE_COUNT = 4000;
 
 	public static int READ_CLIENT_NUMBER = 4000;
-	public static int READ_CLIENT_MAX_NUMBER_OF_MESSAGES = 1;
-	public static int READ_CLIENT_WAIT_TIME_SECONDS = 10;
+	public static int READ_CLIENT_MAX_NUMBER_OF_MESSAGES = 20;
+	public static int READ_CLIENT_WAIT_TIME_SECONDS = 5;
 	
-	public static int READ_CLIENT_SLEEP_TIME_MS = 500;
+	public static int READ_CLIENT_SLEEP_TIME_MS = 1;
 	static {
 		Properties prop = new Properties();
 		try {
